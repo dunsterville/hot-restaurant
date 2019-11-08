@@ -29,16 +29,21 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script>
-  axios.get('#')
+  axios.get('/tables')
   .then(res=>{
-    let newTable = document.createElement(`p`)
-    newTable.innerHTML= `
-   Table #${table} 
-   ID: ${unique}
-   Name: ${name}
-   Phone: ${phone}
-   Email: ${email}
-    `
+    console.log(res)
+    res.data.forEach(table => {
+      let newTable = document.createElement(`p`)
+      newTable.innerHTML= `
+        Table: 1,
+        ID: ${table.id},
+        Name: ${table.name},
+        Phone: ${table.phone},
+        Email: ${table.email}
+      `
+      document.getElementById('tables').append(newTable)
+    });
+    
   })
   .catch(e=>console.log(e))
   
