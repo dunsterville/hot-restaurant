@@ -18,7 +18,8 @@
         <a href="reserve.html"><button class="btn btn-success" id="reserve">Make Reservation</button></a>
         <a href="index.html"><button class="btn btn-warning" id="home">Home</button></a>
     </div>
-
+    <div id="tables"></div>
+    <div id="waitlist"></div>
 
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -28,21 +29,34 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
   <script>
+    let tableNumber = 1;
   axios.get('/tables')
   .then(res=>{
     console.log(res)
-    res.data.forEach(table => {
-      let newTable = document.createElement(`p`)
-      newTable.innerHTML= `
-        Table: 1,
-        ID: ${table.id},
-        Name: ${table.name},
-        Phone: ${table.phone},
-        Email: ${table.email}
-      `
-      document.getElementById('tables').append(newTable)
-    });
+      res.data.forEach(table => {
+        let newTable = document.createElement(`p`)
+        newTable.innerHTML= `
+        <div class="card">
+          <div class="card-body">
+            <ul class="list-group">
+              <li class="list-group-item">Table: ${tableNumber}</li>
+              <li class="list-group-item">ID: ${table.id}</li>
+              <li class="list-group-item">Name: ${table.name}</li>
+              <li class="list-group-item">Phone: ${table.phone}</li>
+              <li class="list-group-item">Email: ${table.email}</li>
+            </ul>
+          </div>
+        </div>
+        `
+        if (tableNumber >5 ) {
+          document.getElementById('waitlist').append(newTable)
+        } else {
+          document.getElementById('tables').append(newTable)
+        }
+        tableNumber++
+      }) 
     
   })
   .catch(e=>console.log(e))
