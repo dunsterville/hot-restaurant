@@ -4,15 +4,15 @@ e.preventDefault()
 
 
 let table ={
-name : document.getElementById('name').value,
-email :  document.getElementById('email').value,
+name: document.getElementById('name').value,
+email:  document.getElementById('email').value,
 phone:  document.getElementById('phone').value,
-unique :  document.getElementById('unique').value
+id:  document.getElementById('unique').value
 }
 
-axios.post('#', table)
+axios.post('/tables', table)
 .then(response=>{
-
+  console.log(response)
 })
 .catch(e=>console.log(e))
 
