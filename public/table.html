@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Hot Restuarant</h1>
+  <h2>Current Reservations and Waiting List</h2>
+  <a href="reserve.html"><button id="reserve">Make Reservation</button></a>
+  <div id="tables"></div>
+  <a href="index.html"><button>Home</button></a>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+  axios.get('#')
+  .then(res=>{
+    let newTable = document.createElement(`p`)
+    newTable.innerHTML= `
+   Table #${table} 
+   ID: ${unique}
+   Name: ${name}
+   Phone: ${phone}
+   Email: ${email}
+    `
+  })
+  .catch(e=>console.log(e))
+  
+  </script>
+</body>
+</html>
